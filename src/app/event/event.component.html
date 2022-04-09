@@ -1,0 +1,13 @@
+<div class="event-main">
+  <div #messages
+    *ngFor="let messageData of messageDataList">
+    <app-message 
+      [inputMessageId]="messageData.id"
+      [inputMessageType]="messageData.msgType"
+      [inputMessageText]="messageData.text"
+      (textChangeEvent)="messageChange($event)"
+      > 
+    </app-message>
+  </div>
+  <button mat-stroked-button color="primary" (click)="addMessage()">ADD</button>
+</div>

@@ -1,4 +1,17 @@
 
-.event-main {
+.event-panel {
   margin: 7px;
+}
+.event-info {
+  margin: 7px 0px;
+  display: grid;
+  grid-template-columns: 200px 40px 50px;
+}
+.event-icon {
+  transform: scale(1);
+}
+.event-delete-button {
+  margin:7px;
+  border: solid;
+  border-radius: 20px;
 }

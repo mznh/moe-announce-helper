@@ -27,21 +27,24 @@ export class MessageComponent implements OnInit {
     this.messageValue.nativeElement.value = this.inputMessageText;
   }
   ngOnChanges(){
-    console.log(this.inputMessageId)
-    console.log(this.inputMessageType)
-    console.log(this.inputMessageText)
+    //console.log(this.inputMessageId)
+    //console.log(this.inputMessageType)
+    //console.log(this.inputMessageText)
   }
 
   public copyToClipboard(){
     const messageText = this.messageValue.nativeElement.value;
     this.clipboard.copy(messageText)
   }
+
   public deleteMessage(){
     this.textChangeEvent.emit({
       id: this.inputMessageId,
       msgType: "delete",
       text: ""
     });
+  }
+  public nameChange(){
   }
 
   public textChange(){
@@ -52,6 +55,5 @@ export class MessageComponent implements OnInit {
       text: messageText
     });
   }
-
 
 }

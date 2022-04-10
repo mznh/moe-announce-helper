@@ -1,12 +1,13 @@
-<div class="message">
 
+<div class="message">
   <textarea class="messageText"
     #messageValue
     (change)="textChange()"
     matInput
     cdkTextareaAutosize
     cdkAutosizeMinRows="3"
-    cdkAutosizeMaxRows="5"> </textarea>
+    cdkAutosizeMaxRows="5"
+    > </textarea>
   <button mat-stroked-button color="primary" class="messageCopyButton" 
     tabindex="-1"
     (click)="copyToClipboard()">コピー！</button>

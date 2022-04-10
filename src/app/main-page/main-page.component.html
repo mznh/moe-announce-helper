@@ -5,7 +5,29 @@
 <p>対応する保証はできませんがご意見歓迎です <a href="https://marshmallow-qa.com/mznh_moe">マシュマロ</a></p>
 
 <div class="main-controll-panel">
-  <button mat-stroked-button color="primary" (click)="saveData()">SAVE</button>
-  <button mat-stroked-button color="primary" (click)="loadData()">LOAD</button>
+  <button mat-stroked-button color="primary" (click)="saveLocalData()">SAVE</button>
+  <button mat-stroked-button color="primary" (click)="loadLocalData()">LOAD</button>
+  <button mat-stroked-button color="primary" (click)="saveDataToJson()">SAVE AS FILE</button>
+  <a #jsonDownload ></a>
+  <button mat-stroked-button color="primary" (click)="loadJsonFile()">LOAD FROM FILE</button>
+	<input type="file" style="display: none" #fileInput 
+		accept="*.json" (change)="onChangeFileInput()" />
 </div>
-<app-event> </app-event>
+
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="{{event.name}}" *ngFor="let event of (saveData.events)">
+		<app-event
+      #eventElm
+			[inputEventData]="event"
+      (eventChangeEvent)="eventChange($event)"
+      >
+		</app-event>
+	</mat-tab>
+  <mat-tab disabled class="add-event-tab">
+    <ng-template mat-tab-label class="add-event-temp" (click)="addEvent()">
+      <button mat-button class="add-event-button"color="primary" (click)="addEvent()">ADD</button>
+    </ng-template>
+	</mat-tab>
+</mat-tab-group>
+
+<button mat-stroked-button color="primary" (click)="clearData()">DEBUG_DATA_CLEAR</button>

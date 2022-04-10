@@ -1,7 +1,7 @@
-import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter} from '@angular/core';
 import { MessageComponent } from '../message/message.component';
-import { ControllerService } from '../controller.service';
-import { MessageData } from '../model/message-data';
+//import { ControllerService } from '../controller.service';
+import { SaveData, EventData, MessageData } from '../model/message-data';
 
 @Component({
   selector: 'app-event',
@@ -10,29 +10,49 @@ import { MessageData } from '../model/message-data';
 })
 export class EventComponent implements OnInit {
   @ViewChild('messages') messages:any;
-  public messageDataList:MessageData[] =[];
+  @ViewChild('eventNameInput') nameInputElm:any;
+  @Input() inputEventData:EventData;
+  @Output() eventChangeEvent = new EventEmitter<{event:EventData,message:MessageData}>();
 
-  constructor(private controllerService:ControllerService) {
-    this.messageDataList = this.controllerService.messageList;
-
+  constructor() {
   }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges():void{
-    this.updateMessages();
+  public renameEvent(){
+    console.log("events-name-change")
+    const newName = this.nameInputElm.nativeElement.value;
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: { id:-1, msgType:"rename",text:newName }
+    });
   }
+
+  public deleteEvent(){
+    console.log("events-name-change")
+    const newName = this.nameInputElm.nativeElement.value;
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: { id:-1, msgType:"delete",text:newName }
+    });
+  }
+
   public addMessage(){
-    this.controllerService.addMessage("hoge","");
+    console.log("events-add-messages")
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: { id:-1, msgType:"add",text:"" }
+    });
 
   }
-  public updateMessages(){
-    this.messageDataList = this.controllerService.messageList;
-  }
+
   public messageChange(changeData:MessageData){
-    this.controllerService.changeMessage(changeData)
-    this.updateMessages();
+    console.log("events-MessagesChange")
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: changeData
+    });
   }
 
 }

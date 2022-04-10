@@ -7,6 +7,10 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
@@ -26,6 +30,10 @@ import { ControllerService } from './controller.service';
     BrowserAnimationsModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
     ClipboardModule,
   ],
   providers: [],

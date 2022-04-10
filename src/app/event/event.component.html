@@ -1,13 +1,27 @@
-<div class="event-main">
-  <div #messages
-    *ngFor="let messageData of messageDataList">
-    <app-message 
-      [inputMessageId]="messageData.id"
-      [inputMessageType]="messageData.msgType"
-      [inputMessageText]="messageData.text"
-      (textChangeEvent)="messageChange($event)"
-      > 
-    </app-message>
+<div class="event-panel">
+  <div class="event-info">
+    <input matInput 
+      #eventNameInput
+      placeholder="イベントの名前" 
+      value="{{inputEventData.name}}" 
+      (change)="renameEvent()">
+    <button mat-icon-button
+      tabindex="-1"
+      color="accent" (click)="deleteEvent()">
+      <mat-icon class="event-icon">delete</mat-icon>
+    </button>
   </div>
-  <button mat-stroked-button color="primary" (click)="addMessage()">ADD</button>
+  <div class="event-main">
+    <div #messages
+      *ngFor="let messageData of inputEventData.messages">
+      <app-message 
+        [inputMessageId]="messageData.id"
+        [inputMessageType]="messageData.msgType"
+        [inputMessageText]="messageData.text"
+        (textChangeEvent)="messageChange($event)"
+        > 
+      </app-message>
+    </div>
+    <button mat-stroked-button color="primary" (click)="addMessage()">ADD</button>
+  </div>
 </div>

@@ -2,3 +2,18 @@
 .main-controll-panel {
   margin: 0px 7px;
 }
+
+.add-event-tab {
+  margin-left: 0px !important;
+}
+.add-event-temp {
+  margin-left: 0px !important;
+}
+.add-event-button {
+  margin-left: 0px;
+  margin-right: auto;
+  width: 150px;
+  height: 70px;
+  border: 0px;
+
+}

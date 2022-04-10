@@ -39,7 +39,6 @@ export class EventComponent implements OnInit {
   }
 
   public addMessage(){
-    //console.log("events-add-messages")
     this.eventChangeEvent.emit({
       event: this.inputEventData,
       message: { id:-1, msgType:"add",text:"" }
@@ -48,7 +47,6 @@ export class EventComponent implements OnInit {
   }
 
   public messageChange(changeData:MessageData){
-    //console.log("events-MessagesChange")
     this.eventChangeEvent.emit({
       event: this.inputEventData,
       message: changeData

@@ -1,16 +1,35 @@
 
 <div class="message">
-  <textarea class="messageText"
-    #messageValue
-    (change)="textChange()"
-    matInput
-    cdkTextareaAutosize
-    cdkAutosizeMinRows="3"
-    cdkAutosizeMaxRows="5"
-    > </textarea>
+  <mat-select 
+    #typeValue
+    [(value)]="inputMessageType"
+    class="message-type-select" (selectionChange)="typeChange($event.value)">
+    <mat-option value="say">say</mat-option>
+    <mat-option value="shout">shout</mat-option>
+    <mat-option value="auc">auc</mat-option>
+    <mat-option value="kgr">===</mat-option>
+  </mat-select>
+
+  <ng-container [ngSwitch]="inputMessageType">
+    <ng-container *ngSwitchCase="'hoge'">
+      <textarea class="messageText" #messageValue (onchange)="textChange()" matInput
+        cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
+    </ng-container>
+    <ng-container *ngSwitchCase="'kgr'">
+      <div #messageValue style="display: none" > </div>
+      =====================================
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <textarea class="messageText" #messageValue (onchange)="textChange()"
+        matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
+    </ng-container>
+  </ng-container>
   <button mat-stroked-button color="primary" class="messageCopyButton" 
     tabindex="-1"
     (click)="copyToClipboard()">コピー！</button>
+  <button mat-stroked-button color="primary" class="messageCmdCopyButton" 
+    tabindex="-1"
+    (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
   <button mat-stroked-button color="accent" class="messageDeleteButton" 
     tabindex="-1"
     (click)="deleteMessage()">削除</button>

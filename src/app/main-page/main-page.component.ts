@@ -10,7 +10,6 @@ import { SaveData,EventData,MessageData} from "../model/message-data";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  @ViewChildren(EventComponent) eventhoges!:QueryList<EventComponent>;
   @ViewChild('jsonDownload') jsonDownloadLink:any;
   @ViewChild('fileInput') fileInputLink:any;
 

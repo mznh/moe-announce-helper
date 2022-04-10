@@ -1,13 +1,24 @@
 .message {
   margin: 7px 0px;
   display: grid;
-  grid-template-columns: 300px 100px 50px;
+  grid-template-columns: 70px 400px 100px 100px 50px;
+
+}
+
+.message-type-select {
+  border: 1px solid #AAAAAA;
+  text-align: center;
+  height: 100% ;
 }
 .mat-input-wrapper, .messageText{
-  height: 20px ;
+  margin: 0px 5px 0px 5px ;
 }
+
 .messageCopyButton{
-  margin: 0px 5px;
+  margin: 0px 5px 0px 0px ;
+}
+.messageCmdCopyButton{
+  margin: 0px 5px 0px 0px ;
 }
 .messageDeleteButton{
   margin: 0px 0px;

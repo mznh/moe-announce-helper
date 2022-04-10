@@ -11,6 +11,7 @@ import { MessageData } from '../model/message-data';
 })
 export class MessageComponent implements OnInit {
   @ViewChild('messageValue') messageValue:any;
+  @ViewChild('typeValue') typeValue:any;
   @Input() inputMessageId:number;
   @Input() inputMessageType:string;
   @Input() inputMessageText:string;
@@ -23,18 +24,20 @@ export class MessageComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    //console.log(this.messageValue)
     this.messageValue.nativeElement.value = this.inputMessageText;
-  }
-  ngOnChanges(){
-    //console.log(this.inputMessageId)
-    //console.log(this.inputMessageType)
-    //console.log(this.inputMessageText)
   }
 
   public copyToClipboard(){
     const messageText = this.messageValue.nativeElement.value;
     this.clipboard.copy(messageText)
+  }
+
+  public copyToClipboardWithCmdStyle(){
+    const messageText = this.messageValue.nativeElement.value;
+    const moeCmd = this.inputMessageType;
+    const copyText = "/" + moeCmd + " " + messageText.replace(/\r?\n/g,"");
+
+    this.clipboard.copy(copyText)
   }
 
   public deleteMessage(){
@@ -47,6 +50,13 @@ export class MessageComponent implements OnInit {
   public nameChange(){
   }
 
+  public typeChange(value:string){
+    this.textChangeEvent.emit({
+      id: this.inputMessageId,
+      msgType: value,
+      text: this.inputMessageText
+    });
+  }
   public textChange(){
     const messageText = this.messageValue.nativeElement.value;
     this.textChangeEvent.emit({

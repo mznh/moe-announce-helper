@@ -11,6 +11,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
@@ -34,6 +35,7 @@ import { ControllerService } from './controller.service';
     MatInputModule,
     MatIconModule,
     MatDialogModule,
+    MatSelectModule,
     ClipboardModule,
   ],
   providers: [],

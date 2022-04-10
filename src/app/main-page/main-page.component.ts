@@ -30,8 +30,8 @@ export class MainPageComponent implements OnInit {
   
   //多分ここがドンドンデカくなる
   eventChange(changeData:{event:EventData,message:MessageData}){
-    console.log("change-events");
-    console.log(changeData);
+    //console.log("change-events");
+    //console.log(changeData);
     const eventId = changeData.event.id;
     const newMessageData = changeData.message;
     const msgType = newMessageData.msgType;
@@ -50,7 +50,7 @@ export class MainPageComponent implements OnInit {
 
 
   addEvent(){
-    console.log("add-events");
+    //console.log("add-events");
     this.controllerService.addEvent();
   }
 

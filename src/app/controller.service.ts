@@ -39,7 +39,7 @@ export class ControllerService {
   }
 
   public addEvent(){
-    console.log("service-add-event")
+    //console.log("service-add-event")
     let newEventIndex = 0;
     if(this.saveData.events.length != 0){// 空じゃないときは末尾に追加
       const lastEvent = this.saveData.events[this.saveData.events.length - 1]
@@ -62,7 +62,7 @@ export class ControllerService {
   }
 
   public addMessage(eventId:number, mesageId?:number, msgType?:string, text?:string){
-    console.log("service-addMessage")
+    //console.log("service-addMessage")
     const tmp = this.fetchEvent(eventId);
     if(tmp === undefined){
       throw "Error";
@@ -82,7 +82,7 @@ export class ControllerService {
   }
 
   public changeMessage(eventId:number, newMessageData:MessageData){
-    console.log("changeMessage")
+    //console.log("changeMessage")
     //参照をゲッチュ
     const oldEvent = this.saveData.events.find((evt)=>{return evt.id == eventId})
     if(oldEvent === undefined){
@@ -99,18 +99,18 @@ export class ControllerService {
   }
 
   public saveEvent(){
-    console.log("service-save")
-    console.log(localStorage)
+    //console.log("service-save")
+    //console.log(localStorage)
     localStorage.setItem(localStorageKey,this.generateJsonString())
 
     this.toastOpen("アナウンスデータをセーブしました。")
   }
   public loadEventFromLocalStrage(){
-    console.log("service-load-from local strage")
+    //console.log("service-load-from local strage")
     const saveRowStringData = localStorage.getItem(localStorageKey)
-    console.log(localStorage)
+    //console.log(localStorage)
     if(saveRowStringData === null){
-      console.log("save data is null")
+      //console.log("save data is null")
       return;
     }
     this.saveData = JSON.parse(saveRowStringData)

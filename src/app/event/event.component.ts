@@ -21,7 +21,7 @@ export class EventComponent implements OnInit {
   }
 
   public renameEvent(){
-    console.log("events-name-change")
+    //console.log("events-name-change")
     const newName = this.nameInputElm.nativeElement.value;
     this.eventChangeEvent.emit({
       event: this.inputEventData,
@@ -30,7 +30,7 @@ export class EventComponent implements OnInit {
   }
 
   public deleteEvent(){
-    console.log("events-name-change")
+    //console.log("events-name-change")
     const newName = this.nameInputElm.nativeElement.value;
     this.eventChangeEvent.emit({
       event: this.inputEventData,
@@ -39,7 +39,7 @@ export class EventComponent implements OnInit {
   }
 
   public addMessage(){
-    console.log("events-add-messages")
+    //console.log("events-add-messages")
     this.eventChangeEvent.emit({
       event: this.inputEventData,
       message: { id:-1, msgType:"add",text:"" }
@@ -48,7 +48,7 @@ export class EventComponent implements OnInit {
   }
 
   public messageChange(changeData:MessageData){
-    console.log("events-MessagesChange")
+    //console.log("events-MessagesChange")
     this.eventChangeEvent.emit({
       event: this.inputEventData,
       message: changeData

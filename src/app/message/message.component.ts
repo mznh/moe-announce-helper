@@ -23,7 +23,7 @@ export class MessageComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    console.log(this.messageValue)
+    //console.log(this.messageValue)
     this.messageValue.nativeElement.value = this.inputMessageText;
   }
   ngOnChanges(){

@@ -28,15 +28,22 @@ export class MessageComponent implements OnInit {
   }
 
   public copyToClipboard(){
-    const messageText = this.messageValue.nativeElement.value;
+    //const messageText = this.messageValue.nativeElement.value;
+    const messageText = this.inputMessageText;
+    //console.log("kore kopi ")
+    //console.log(messageText)
+
     this.clipboard.copy(messageText)
   }
 
   public copyToClipboardWithCmdStyle(){
-    const messageText = this.messageValue.nativeElement.value;
+    //const messageText = this.messageValue.nativeElement.value;
+    const messageText = this.inputMessageText;
     const moeCmd = this.inputMessageType;
     const copyText = "/" + moeCmd + " " + messageText.replace(/\r?\n/g,"");
 
+    //console.log("kore kopi ")
+    //console.log(messageText)
     this.clipboard.copy(copyText)
   }
 
@@ -63,6 +70,13 @@ export class MessageComponent implements OnInit {
       id: this.inputMessageId,
       msgType: this.inputMessageType,
       text: messageText
+    });
+  }
+  public onSelect(){
+    this.textChangeEvent.emit({
+      id: this.inputMessageId,
+      msgType: this.inputMessageType,
+      text: this.inputMessageText
     });
   }
 

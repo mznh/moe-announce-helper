@@ -8,11 +8,14 @@
     <mat-option value="shout">shout</mat-option>
     <mat-option value="auc">auc</mat-option>
     <mat-option value="kgr">===</mat-option>
+    <mat-option value="hoge">hoge</mat-option>
   </mat-select>
 
   <ng-container [ngSwitch]="inputMessageType">
     <ng-container *ngSwitchCase="'hoge'">
-      <textarea class="messageText" #messageValue (onchange)="textChange()" matInput
+      <textarea matInput class="messageText"
+        #messageValue 
+        (change)="textChange()" 
         cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
     </ng-container>
     <ng-container *ngSwitchCase="'kgr'">
@@ -20,8 +23,9 @@
       =====================================
     </ng-container>
     <ng-container *ngSwitchDefault>
-      <textarea class="messageText" #messageValue (onchange)="textChange()"
-        matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
+      <textarea matInput class="messageText" #messageValue 
+        (change)="textChange()" 
+        cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
     </ng-container>
   </ng-container>
   <button mat-stroked-button color="primary" class="messageCopyButton" 

@@ -78,5 +78,8 @@ export class MessageComponent implements OnInit {
   public onMouse(){
     this.messageValue.nativeElement.blur();
   }
+  public clickTypeSelectForm(){
+    this.typeValue.open()
+  }
 
 }

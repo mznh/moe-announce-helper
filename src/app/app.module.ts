@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -31,6 +32,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
     MatTabsModule,

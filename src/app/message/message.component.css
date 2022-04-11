@@ -1,25 +1,49 @@
 .message {
   margin: 7px 0px;
   display: grid;
-  grid-template-columns: 70px 400px 100px 100px 50px;
+  grid-template-columns: 90px 400px 100px 100px 50px;
+}
+
+.message-form{
+}
+
+.message-type-form {
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+    
+}
+
+.message-type-form ::ng-deep .mat-form-field-underline {
+  display: none;
 }
 
 .message-type-select {
-  border: 1px solid #AAAAAA;
   text-align: center;
-  height: 100% ;
+  padding: 0px 3px;
+  width: 90%;
 }
 
-.mat-input-wrapper, .messageText{
-  margin: 0px 5px 0px 5px ;
+.message-text{
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  padding: 3px;
+  margin: 0px 0px 0px 5px ;
+  width: 98%;
 }
 
-.messageCopyButton{
-  margin: 0px 5px 0px 0px ;
+.message-text-kugiri{
+  margin-top: 20px;
+  text-align: center;
+
 }
-.messageCmdCopyButton{
-  margin: 0px 5px 0px 0px ;
+
+
+.message-copy-button{
+  margin: 0px 0px 0px 10px ;
 }
-.messageDeleteButton{
-  margin: 0px 0px;
+.message-cmd-copy-button{
+  margin: 0px 0px 0px 5px ;
+}
+.message-delete-button{
+  margin: 0px 0px 0px 5px ;
 }

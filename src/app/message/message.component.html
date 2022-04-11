@@ -1,43 +1,39 @@
 
 <div class="message">
-  <mat-select 
-    #typeValue
-    [(value)]="inputMessageType"
-    class="message-type-select" (selectionChange)="typeChange($event.value)">
-    <mat-option value="say">say</mat-option>
-    <mat-option value="shout">shout</mat-option>
-    <mat-option value="auc">auc</mat-option>
-    <mat-option value="kgr">===</mat-option>
-  </mat-select>
-
-  <ng-container [ngSwitch]="inputMessageType">
-    <ng-container *ngSwitchCase="'hoge'">
-      <textarea matInput class="messageText"
-        #messageValue 
-        (change)="textChange()" 
-        cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
+  <mat-form-field appearance="legacy" class="message-type-form" (click)="clickTypeSelectForm()" >
+    <mat-select #typeValue class="message-type-select"
+      [(value)]="inputMessageType" (selectionChange)="typeChange($event.value)" >
+      <mat-option value="say">say</mat-option>
+      <mat-option value="shout">shout</mat-option>
+      <mat-option value="auc">auc</mat-option>
+      <mat-option value="kgr">===</mat-option>
+    </mat-select>
+  </mat-form-field>
+    <ng-container [ngSwitch]="inputMessageType">
+      <ng-container *ngSwitchCase="'hoge'">
+        <textarea matInput class="message-text" #messageValue (change)="textChange()" > </textarea>
+      </ng-container>
+      <ng-container *ngSwitchCase="'kgr'">
+        <div #messageValue style="display: none" > </div>
+        <div class="message-text-kugiri">
+          =====================================
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <textarea matInput class="message-text" #messageValue 
+          cdkTextareaAutosize 
+          (change)="textChange()" > </textarea>
+      </ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="'kgr'">
-      <div #messageValue style="display: none" > </div>
-      <div class="message-text-kugiri">
-        =====================================
-      </div>
-    </ng-container>
-    <ng-container *ngSwitchDefault>
-      <textarea matInput class="messageText" #messageValue 
-        (change)="textChange()" 
-        cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" > </textarea>
-    </ng-container>
-  </ng-container>
-  <button mat-stroked-button color="primary" class="messageCopyButton" 
+  <button mat-stroked-button color="primary" class="message-copy-button" 
     tabindex="-1"
     (mouseover)="onMouse()"
     (click)="copyToClipboard()">コピー！</button>
-  <button mat-stroked-button color="primary" class="messageCmdCopyButton" 
+  <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
     tabindex="-1"
     (mouseover)="onMouse()"
     (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
-  <button mat-stroked-button color="accent" class="messageDeleteButton" 
+  <button mat-stroked-button color="accent" class="message-delete-button" 
     tabindex="-1"
     (click)="deleteMessage()">削除</button>
 </div>

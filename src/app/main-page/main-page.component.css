@@ -1,5 +1,6 @@
 
-
+.main-body {
+}
 .main-header {
   margin: 10px 7px;
 }
@@ -7,6 +8,8 @@
   margin: 0px 7px;
 }
 
+.main-events {
+}
 .add-event-tab {
   margin-left: 0px !important;
 }

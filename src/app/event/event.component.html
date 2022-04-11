@@ -1,10 +1,12 @@
 <div class="event-panel">
   <div class="event-info">
-    <input matInput 
-      #eventNameInput
-      placeholder="イベントの名前" 
-      value="{{inputEventData.name}}" 
-      (change)="renameEvent()">
+    <mat-form-field appearance="legacy">
+      <input matInput 
+        #eventNameInput
+        placeholder="イベント名" 
+        value="{{inputEventData.name}}" 
+        (change)="renameEvent()">
+    </mat-form-field>
     <button mat-icon-button
       tabindex="-1"
       color="accent" (click)="openDeleteModal()">
@@ -12,14 +14,12 @@
     </button>
   </div>
   <div class="event-main">
-    <div #messages
-      *ngFor="let messageData of inputEventData.messages">
+    <div #messages *ngFor="let messageData of inputEventData.messages">
       <app-message 
         [inputMessageId]="messageData.id"
         [inputMessageType]="messageData.msgType"
         [inputMessageText]="messageData.text"
-        (textChangeEvent)="messageChange($event)"
-        > 
+        (textChangeEvent)="messageChange($event)" > 
       </app-message>
     </div>
     <button mat-stroked-button color="primary" (click)="addMessage()">ADD</button>

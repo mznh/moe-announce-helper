@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter} f
 import { MessageComponent } from '../message/message.component';
 //import { ControllerService } from '../controller.service';
 import { SaveData, EventData, MessageData } from '../model/message-data';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-event',
@@ -14,7 +16,7 @@ export class EventComponent implements OnInit {
   @Input() inputEventData:EventData;
   @Output() eventChangeEvent = new EventEmitter<{event:EventData,message:MessageData}>();
 
-  constructor() {
+  constructor(private matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -29,8 +31,21 @@ export class EventComponent implements OnInit {
     });
   }
 
+  public openDeleteModal(){
+    const dialogConfig = new MatDialogConfig();
+
+    // 表示するdialogの設定
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "150px";
+    dialogConfig.width = "320px";
+    dialogConfig.data = {eventId: this.inputEventData.id, eventName: this.inputEventData.name};
+
+    const modalDialog = this.matDialog.open(DeleteModalComponent, dialogConfig);
+
+  }
+
   public deleteEvent(){
-    //console.log("events-name-change")
     const newName = this.nameInputElm.nativeElement.value;
     this.eventChangeEvent.emit({
       event: this.inputEventData,

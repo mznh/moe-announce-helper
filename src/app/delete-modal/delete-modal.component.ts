@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-import { ControllerService } from '../controller.service';
+import { ControllerService } from '../controller-service/controller.service';
 
 @Component({
   selector: 'app-delete-modal',

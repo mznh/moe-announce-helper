@@ -18,7 +18,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
 import { EventComponent } from './event/event.component';
-import { ControllerService } from './controller.service';
+import { ControllerService } from './controller-service/controller.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @NgModule({

@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   SaveData, EventData, MessageData,
   generateMessage, generateEvent,
-  getNewMessageId, getNewEventId} from './model/message-data'; 
+  getNewMessageId, getNewEventId} from '../model/message-data'; 
 
 export const localStorageKey = "Save001";
 

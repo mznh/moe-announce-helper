@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit,ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { ControllerService } from '../controller.service';
-import { EventComponent } from "../event/event.component";
 import { Router } from '@angular/router';
+import { ControllerService } from '../controller-service/controller.service';
+import { EventComponent } from "../event/event.component";
 import { SaveData,EventData,MessageData} from "../model/message-data";
 
 @Component({

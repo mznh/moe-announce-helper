@@ -1,9 +1,11 @@
 import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter} from '@angular/core';
-import { MessageComponent } from '../message/message.component';
-//import { ControllerService } from '../controller.service';
-import { SaveData, EventData, MessageData } from '../model/message-data';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
+import { MessageComponent } from '../message/message.component';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { SaveData, EventData, MessageData } from '../model/message-data';
+
 
 @Component({
   selector: 'app-event',
@@ -65,6 +67,14 @@ export class EventComponent implements OnInit {
     this.eventChangeEvent.emit({
       event: this.inputEventData,
       message: changeData
+    });
+  }
+
+  public drop(event: CdkDragDrop<MessageData[]>){
+    moveItemInArray(this.inputEventData.messages, event.previousIndex, event.currentIndex);
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: { id:-1, msgType:"drag",text:"" }
     });
   }
 

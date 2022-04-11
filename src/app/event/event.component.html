@@ -14,13 +14,18 @@
     </button>
   </div>
   <div class="event-main">
-    <div #messages *ngFor="let messageData of inputEventData.messages">
-      <app-message 
-        [inputMessageId]="messageData.id"
-        [inputMessageType]="messageData.msgType"
-        [inputMessageText]="messageData.text"
-        (textChangeEvent)="messageChange($event)" > 
-      </app-message>
+    <div cdkDropList class="event-message-list" (cdkDropListDropped)="drop($event)">
+      <div #messages cdkDrag class="evetn-message-panel" *ngFor="let messageData of inputEventData.messages">
+        <div class="event-message-grip" cdkDragHandle>
+          <mat-icon class="event-message-grip-icon">drag_handle</mat-icon>
+        </div>
+        <app-message 
+          [inputMessageId]="messageData.id"
+          [inputMessageType]="messageData.msgType"
+          [inputMessageText]="messageData.text"
+          (textChangeEvent)="messageChange($event)" > 
+        </app-message>
+      </div>
     </div>
     <button mat-stroked-button color="primary" (click)="addMessage()">ADD</button>
   </div>

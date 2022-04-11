@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
@@ -41,6 +42,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     MatDialogModule,
     MatSelectModule,
     ClipboardModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

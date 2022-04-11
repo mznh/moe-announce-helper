@@ -2,8 +2,12 @@
   margin: 7px 0px;
   display: grid;
   grid-template-columns: 90px 600px 50px;
+  /*
+  width: 790px;
+  border: 1px solid #EEEEEE;
+  border-radius: 3px;
+  */
 }
-
 
 .message-type-form {
   border: 1px solid #CCCCCC;
@@ -30,15 +34,15 @@
   border: 1px solid #CCCCCC;
   border-radius: 3px;
   padding: 3px;
-  margin: 0px 0px 0px 5px ;
+  margin: 0px 0px 0px 0px ;
   width: 98%;
 }
 
 .message-copy-button{
-  margin: 0px 0px 0px 10px ;
+  margin: 0px 0px 0px 0px ;
 }
 .message-cmd-copy-button{
-  margin: 0px 0px 0px 5px ;
+  margin: 0px 0px 0px 0px ;
 }
 .message-body-kugiri {
   display: grid;
@@ -52,5 +56,5 @@
 
 /* 全message type 共通の削除ボタン*/
 .message-delete-button{
-  margin: 0px 0px 0px 5px ;
+  margin: 0px 0px 0px 0px ;
 }

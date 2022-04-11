@@ -15,3 +15,27 @@
   border: solid;
   border-radius: 20px;
 }
+
+.evetn-message-panel {
+  display: grid;
+  grid-template-columns: 30px 800px;
+  background: #FFFFFF;
+}
+.event-message-grip{
+  position: relative;
+  margin: 7px 0px 7px 0px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.event-message-grip-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 2.2rem;
+}
+

@@ -30,8 +30,6 @@ export class MessageComponent implements OnInit {
   public copyToClipboard(){
     //const messageText = this.messageValue.nativeElement.value;
     const messageText = this.inputMessageText;
-    //console.log("kore kopi ")
-    //console.log(messageText)
 
     this.clipboard.copy(messageText)
   }
@@ -42,8 +40,6 @@ export class MessageComponent implements OnInit {
     const moeCmd = this.inputMessageType;
     const copyText = "/" + moeCmd + " " + messageText.replace(/\r?\n/g,"");
 
-    //console.log("kore kopi ")
-    //console.log(messageText)
     this.clipboard.copy(copyText)
   }
 
@@ -78,6 +74,9 @@ export class MessageComponent implements OnInit {
       msgType: this.inputMessageType,
       text: this.inputMessageText
     });
+  }
+  public onMouse(){
+    this.messageValue.nativeElement.blur();
   }
 
 }

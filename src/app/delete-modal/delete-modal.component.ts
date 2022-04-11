@@ -21,6 +21,7 @@ export class DeleteModalComponent implements OnInit {
 
   deleteEvent(){
     this.controllerService.deleteEvent(this.data.eventId);
+    this.controllerService.saveEvent(true);
     this.dialogRef.close()
   }
   closeMe(){

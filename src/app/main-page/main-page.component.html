@@ -4,14 +4,14 @@
   <h1>MoE アナウンス支援君(仮)Ver 0.0.2</h1>
   <h3>α版です。予告なく崩壊します。なんの責任も持ちません by <a  href="https://twitter.com/mznh_moe">@mznh_moe</a></h3>
   <p>いいね～！とかこれほしい！とかご意見歓迎です。バグ報告も大歓迎。<a href="https://marshmallow-qa.com/mznh_moe">マシュマロ</a></p>
-  <p>
-  変更点：sayやshoutを選択できて、それに合わせたコマンド付きでコピペできるボタンを追加。hogeってなってるものは旧仕様
-  </p>
+  <p>変更点</p>
+  <ul>
+    <li> sayやshoutを選択できて、それに合わせたコマンド付きでコピペできるボタンを追加。hogeってなってるものは旧仕様 </li>
+    <li> 編集した直後は古いやつがコピペされちゃう問題の一時対応。そして事あるごとにセーブするように変更（それに伴ってセーブロードボタン削除 </li>
+  </ul>
 </div>
 
 <div class="main-controll-panel">
-  <button mat-stroked-button color="primary" (click)="saveLocalData()">SAVE</button>
-  <button mat-stroked-button color="primary" (click)="loadLocalData()">LOAD</button>
   <button mat-stroked-button color="primary" (click)="saveDataToJson()">SAVE AS FILE</button>
   <a #jsonDownload ></a>
   <button mat-stroked-button color="primary" (click)="loadJsonFile()">LOAD FROM FILE</button>

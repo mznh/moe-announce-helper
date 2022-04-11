@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SaveData, EventData, MessageData, generateMessage, generateEvent } from './model/message-data'; 
+import {
+  SaveData, EventData, MessageData,
+  generateMessage, generateEvent,
+  getNewMessageId, getNewEventId} from './model/message-data'; 
 
 export const localStorageKey = "Save001";
 
@@ -39,11 +42,7 @@ export class ControllerService {
   }
 
   public addEvent(){
-    let newEventIndex = 0;
-    if(this.saveData.events.length != 0){// 空じゃないときは末尾に追加
-      const lastEvent = this.saveData.events[this.saveData.events.length - 1]
-      newEventIndex = lastEvent.id +1
-    }
+    const newEventIndex = getNewEventId(this.saveData);
     this.saveData.events.push( generateEvent(newEventIndex,"新しいイベント") )
   }
 
@@ -61,17 +60,15 @@ export class ControllerService {
   }
 
   public addMessage(eventId:number, mesageId?:number, msgType?:string, text?:string){
-    const tmp = this.fetchEvent(eventId);
-    if(tmp === undefined){
+    const eventData = this.fetchEvent(eventId);
+    if(eventData === undefined){
       throw "Error";
       return;
     }
-    const eventData = tmp;
-    let newMessageIndex  = 0
-    if(eventData.messages.length != 0){//空じゃないなら末尾に追加
-      const lastMessage = eventData.messages[eventData.messages.length - 1]
-      newMessageIndex = lastMessage.id + 1;
-    }
+    const newMessageIndex  = getNewMessageId(eventData)
+
+    //add で追加されるデフォmessageはここ
+    //外だししたほうがいいかも
     eventData.messages.push({
       id: newMessageIndex,
       msgType: msgType? msgType : "say",
@@ -95,10 +92,12 @@ export class ControllerService {
     }
   }
 
-  public saveEvent(){
+  public saveEvent(quiet:boolean = false){
     localStorage.setItem(localStorageKey,this.generateJsonString())
+    if(quiet === false){
+      this.toastOpen("アナウンスデータをセーブしました。")
+    }
 
-    this.toastOpen("アナウンスデータをセーブしました。")
   }
   public loadEventFromLocalStrage(){
     const saveRowStringData = localStorage.getItem(localStorageKey)
@@ -110,23 +109,35 @@ export class ControllerService {
   }
 
   public loadEventFromJsonFile(targetFile:File){
-    const reader = new FileReader();
-    reader.readAsText(targetFile);
-    return new Promise((resolve, reject) => {
-      reader.onload = () => {
-        if(typeof reader.result === 'string'){
-				  this.saveData = JSON.parse(reader.result)
-          localStorage.setItem(localStorageKey,this.generateJsonString())
-          this.toastOpen("アナウンスデータをファイルからロードしました。")
-        }
+    try{
+      const reader = new FileReader();
+      reader.readAsText(targetFile);
 
-        resolve(reader.result);
+      return new Promise((resolve, reject) => {
+        reader.onload = () => {
+          // 本来ならここでバリデーションをはさみたい
+          if(typeof reader.result === 'string'){
+            this.saveData = JSON.parse(reader.result)
+            localStorage.setItem(localStorageKey,this.generateJsonString())
+            this.toastOpen("アナウンスデータをファイルからロードしました。")
+          }else{
+            this.toastOpen("ファイル形式が間違っています。")
+            throw 'type error ';
+          }
 
-      };
-      reader.onerror = () => {
-        reject(reader.error);
-      };
-    });
+          resolve(reader.result);
+
+        };
+        reader.onerror = () => {
+          this.toastOpen("ファイル形式が間違っています。")
+          throw 'type error ';
+          reject(reader.error);
+        };
+      });
+    }catch(err:any){
+      this.toastOpen("ファイル読み込みエラー\n形式が間違っているかも？")
+      throw new Error("ファイル読み込みエラー") 
+    }
   }
 
 

@@ -8,7 +8,6 @@
     <mat-option value="shout">shout</mat-option>
     <mat-option value="auc">auc</mat-option>
     <mat-option value="kgr">===</mat-option>
-    <mat-option value="hoge">hoge</mat-option>
   </mat-select>
 
   <ng-container [ngSwitch]="inputMessageType">
@@ -20,7 +19,9 @@
     </ng-container>
     <ng-container *ngSwitchCase="'kgr'">
       <div #messageValue style="display: none" > </div>
-      =====================================
+      <div class="message-text-kugiri">
+        =====================================
+      </div>
     </ng-container>
     <ng-container *ngSwitchDefault>
       <textarea matInput class="messageText" #messageValue 
@@ -30,9 +31,11 @@
   </ng-container>
   <button mat-stroked-button color="primary" class="messageCopyButton" 
     tabindex="-1"
+    (mouseover)="onMouse()"
     (click)="copyToClipboard()">コピー！</button>
   <button mat-stroked-button color="primary" class="messageCmdCopyButton" 
     tabindex="-1"
+    (mouseover)="onMouse()"
     (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
   <button mat-stroked-button color="accent" class="messageDeleteButton" 
     tabindex="-1"

@@ -23,7 +23,7 @@ export class MainPageComponent implements OnInit {
   }
   ngAfterViewInit() {
     // ページ開いたときに localstrage からロード
-    setTimeout(()=>{this.loadLocalData()},300);
+    setTimeout(()=>{this.loadLocalData()},200);
   }
 
   
@@ -44,6 +44,7 @@ export class MainPageComponent implements OnInit {
     }else{
       this.controllerService.changeMessage(eventId,newMessageData);
     }
+    this.controllerService.saveEvent(true);
 
   }
 
@@ -51,6 +52,7 @@ export class MainPageComponent implements OnInit {
   addEvent(){
     //console.log("add-events");
     this.controllerService.addEvent();
+    this.controllerService.saveEvent(true);
   }
 
   updateEvents(){
@@ -83,12 +85,17 @@ export class MainPageComponent implements OnInit {
   }
 
   onChangeFileInput(){
-    const files: { [key: string]: File } = this.fileInputLink.nativeElement.files;
-    const targetFile = files[0];
-    this.controllerService.loadEventFromJsonFile(targetFile).then(()=>{
-      this.loadLocalData();
+    try{
+      const files: { [key: string]: File } = this.fileInputLink.nativeElement.files;
+      const targetFile = files[0];
+      this.controllerService.loadEventFromJsonFile(targetFile).then(()=>{
+        this.loadLocalData();
 
-    });
+      });
+    }catch(err:any){
+      //めんどいんでエラーは握りつぶします
+      console.log(err);
+    }
   }
 
   clearData(){

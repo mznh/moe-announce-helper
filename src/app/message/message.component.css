@@ -1,16 +1,13 @@
 .message {
   margin: 7px 0px;
   display: grid;
-  grid-template-columns: 90px 400px 100px 100px 50px;
+  grid-template-columns: 90px 600px 50px;
 }
 
-.message-form{
-}
 
 .message-type-form {
   border: 1px solid #CCCCCC;
   border-radius: 3px;
-    
 }
 
 .message-type-form ::ng-deep .mat-form-field-underline {
@@ -23,6 +20,12 @@
   width: 90%;
 }
 
+/* text araa を内包するbody */
+.message-body-text {
+  display: grid;
+  grid-template-columns: 400px 100px 100px;
+}
+
 .message-text{
   border: 1px solid #CCCCCC;
   border-radius: 3px;
@@ -31,19 +34,23 @@
   width: 98%;
 }
 
-.message-text-kugiri{
-  margin-top: 20px;
-  text-align: center;
-
-}
-
-
 .message-copy-button{
   margin: 0px 0px 0px 10px ;
 }
 .message-cmd-copy-button{
   margin: 0px 0px 0px 5px ;
 }
+.message-body-kugiri {
+  display: grid;
+  grid-template-columns: 600px;
+}
+
+.message-text-kugiri{
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* 全message type 共通の削除ボタン*/
 .message-delete-button{
   margin: 0px 0px 0px 5px ;
 }

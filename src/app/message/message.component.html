@@ -21,10 +21,10 @@
     </ng-container>
     <ng-container *ngSwitchCase="'kgr'">
       <div class="message-body-kugiri">
-        <div #messageValue style="display: none" > </div>
-        <div class="message-text-kugiri">
-          =====================================
-        </div>
+        <!-- div #messageValue style="display: none" > </div -->
+        <div class="message-hr-kugiri"></div>
+        <input matInput class="message-text-kugiri" #messageValue placeholder="見出し ここをクリック" (change)="textChange()">
+        <div class="message-hr-kugiri"></div>
       </div>
     </ng-container>
     <ng-container *ngSwitchDefault>

@@ -13,13 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
 import { EventComponent } from './event/event.component';
 import { ControllerService } from './controller-service/controller.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
+    MatDividerModule,
     ClipboardModule,
     DragDropModule,
   ],

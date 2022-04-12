@@ -46,11 +46,14 @@
 }
 .message-body-kugiri {
   display: grid;
-  grid-template-columns: 600px;
+  grid-template-columns: 200px 200px 200px;
+}
+.message-hr-kugiri{
+  margin: 30px 0px 29px 0px;
+  background: #CCCCCC;
 }
 
 .message-text-kugiri{
-  margin-top: 20px;
   text-align: center;
 }
 

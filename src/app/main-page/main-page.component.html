@@ -22,13 +22,16 @@
 
   <div class="main-events">
     <mat-tab-group animationDuration="0ms">
-      <mat-tab label="{{event.name}}" *ngFor="let event of (saveData.events)">
-        <app-event
-          #eventElm
-          [inputEventData]="event"
-          (eventChangeEvent)="eventChange($event)"
-          >
-        </app-event>
+      <mat-tab cdkDrag *ngFor="let event of (saveData.events); let i = index">
+        <ng-template mat-tab-label>
+          <div cdkDropList [id]="'tab-'+i"
+            cdkDropListOrientation="horizontal" cdkDropListLockAxis="x" (cdkDropListDropped)="drop($event)" >
+            <div cdkDrag cdkDragRootElement=".mat-tab-label" >
+              {{event.name}}
+            </div>
+          </div>
+        </ng-template>
+        <app-event #eventElm [inputEventData]="event" (eventChangeEvent)="eventChange($event)" > </app-event>
       </mat-tab>
       <mat-tab disabled class="add-event-tab">
         <ng-template mat-tab-label class="add-event-temp" (click)="addEvent()">

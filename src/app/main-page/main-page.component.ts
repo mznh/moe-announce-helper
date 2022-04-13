@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit,ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ControllerService } from '../controller-service/controller.service';
 import { EventComponent } from "../event/event.component";
 import { SaveData,EventData,MessageData} from "../model/message-data";
@@ -77,8 +78,9 @@ export class MainPageComponent implements OnInit {
     link.href = url;
     link.download = fileName;
     link.click();
-    
   }
+
+
 
   loadJsonFile(){
     this.fileInputLink.nativeElement.click();
@@ -96,6 +98,20 @@ export class MainPageComponent implements OnInit {
       //めんどいんでエラーは握りつぶします
       console.log(err);
     }
+  }
+
+  public drop(event: CdkDragDrop<EventData[]>){
+    // 参考: https://tech.bitbank.cc/draggable-tab-by-angular-material/
+    const previousIndex = parseInt(event.previousContainer.id.replace('tab-', ''), 10);
+    const currentIndex = parseInt(event.container.id.replace('tab-', ''), 10);
+    console.log(previousIndex,currentIndex);
+    console.log(this.saveData.events, event.previousIndex, event.currentIndex);
+    this.controllerService.saveEvent(true)
+    moveItemInArray(this.saveData.events, event.previousIndex, event.currentIndex);
+    //this.eventChangeEvent.emit({
+    //  event: this.inputEventData,
+    //  message: { id:-1, msgType:"drag",text:"" }
+    //});
   }
 
   clearData(){

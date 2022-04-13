@@ -4,6 +4,16 @@
 .main-header {
   margin: 10px 7px;
 }
+.main-update-list p,ul{
+  margin: 0px;
+  font-size: 12px;
+}
+
+.main-bug-list p,ul{
+  margin: 0px;
+  font-size: 12px;
+}
+
 .main-controll-panel {
   margin: 0px 7px;
 }

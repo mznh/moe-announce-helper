@@ -3,9 +3,9 @@
   <mat-form-field appearance="legacy" class="message-type-form" (click)="clickTypeSelectForm()" >
     <mat-select #typeValue class="message-type-select" tabindex="-1" 
       [(value)]="inputMessageType" (selectionChange)="typeChange($event.value)" >
-      <mat-option value="say">say</mat-option>
-      <mat-option value="shout">shout</mat-option>
-      <mat-option value="auc">auc</mat-option>
+      <mat-option value="say">SAY</mat-option>
+      <mat-option value="shout">SHOUT</mat-option>
+      <mat-option value="auc">AUC</mat-option>
       <mat-option value="kgr">===</mat-option>
     </mat-select>
   </mat-form-field>

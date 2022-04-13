@@ -5,15 +5,18 @@
 .event-info {
   margin: 7px 0px;
   display: grid;
-  grid-template-columns: 200px 40px 50px;
+  grid-template-columns: 200px 80px 80px 50px;
 }
+.event-export-button{
+  margin: 7px 0px 0px 0px;
+  height: 34px;
+}
+
 .event-icon {
   transform: scale(1);
 }
 .event-delete-button {
-  margin:7px;
-  border: solid;
-  border-radius: 20px;
+  margin: 7px 0px 0px 0px;
 }
 
 .evetn-message-panel {

@@ -108,7 +108,7 @@ export class ControllerService {
     this.toastOpen("アナウンスデータをロードしました。")
   }
 
-  public loadEventFromJsonFile(targetFile:File){
+  public loadEventFromJsonFile(targetFile:File, isEvent:boolean = false){
     try{
       const reader = new FileReader();
       reader.readAsText(targetFile);
@@ -117,9 +117,21 @@ export class ControllerService {
         reader.onload = () => {
           // 本来ならここでバリデーションをはさみたい
           if(typeof reader.result === 'string'){
-            this.saveData = JSON.parse(reader.result)
-            localStorage.setItem(localStorageKey,this.generateJsonString())
-            this.toastOpen("アナウンスデータをファイルからロードしました。")
+            if(isEvent){
+              const newEventIndex = getNewEventId(this.saveData)
+              const newEventData = JSON.parse(reader.result)
+              console.log("hogehoge")
+              console.log(newEventData)
+              newEventData.id = newEventIndex;
+              this.saveData.events.push(newEventData)
+              localStorage.setItem(localStorageKey,this.generateJsonString())
+              this.toastOpen("イベントをファイルからロードしました。")
+
+            }else{ //全部インポートの場合
+              this.saveData = JSON.parse(reader.result)
+              localStorage.setItem(localStorageKey,this.generateJsonString())
+              this.toastOpen("アナウンスデータをファイルからロードしました。")
+            }
           }else{
             this.toastOpen("ファイル形式が間違っています。")
             throw 'type error ';
@@ -150,7 +162,14 @@ export class ControllerService {
     });
   }
 
-  public generateJsonString(){
+  public generateJsonString(eventId?:number){
+    if(eventId !== undefined){
+      const event = this.fetchEvent(eventId);
+      if(event){
+        return JSON.stringify(event);
+      }
+      throw new Error("Event Not Found Error")
+    }
     return JSON.stringify(this.saveData);
   }
 

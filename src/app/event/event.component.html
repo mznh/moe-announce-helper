@@ -7,9 +7,13 @@
         value="{{inputEventData.name}}" 
         (change)="renameEvent()">
     </mat-form-field>
-    <button mat-icon-button
-      tabindex="-1"
-      color="accent" (click)="openDeleteModal()">
+    <button mat-stroked-button tabindex="-1" class="event-export-button" color="primary" (click)="exportJson()">EXPORT</button>
+    <a #jsonDownload style="display: none" ></a>
+
+    <button mat-stroked-button tabindex="-1" class="event-export-button" color="primary" (click)="importJson()">IMPORT</button>
+    <input type="file" style="display: none" #fileInput accept="*.json" (change)="onChangeFileInput()" />
+
+    <button mat-icon-button tabindex="-1" class="event-delete-button" color="accent" (click)="openDeleteModal()">
       <mat-icon class="event-icon">delete</mat-icon>
     </button>
   </div>

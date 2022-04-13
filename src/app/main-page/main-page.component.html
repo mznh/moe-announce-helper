@@ -4,7 +4,8 @@
   <div class="main-header">
     <h1>MoE アナウンス支援君(仮)Ver 0.0.3</h1>
     <h3>α版です。予告なく崩壊します。なんの責任も持ちません by <a  href="https://twitter.com/mznh_moe">@mznh_moe</a></h3>
-    <p>いいね～！とかこれほしい！とかご意見歓迎です。バグ報告も大歓迎。<a href="https://marshmallow-qa.com/mznh_moe">マシュマロ</a></p>
+    <p>機能開発や公開停止の判断に使うので「イベントで使ったよ！」とか「いいね！」って思った方はtwitterのリプかマシュマロにて報告願います。</p>
+    <p>要望やバグ報告も大歓迎。<a href="https://marshmallow-qa.com/mznh_moe">マシュマロはこちら！</a></p>
     <div class="main-update-list">
       <p>変更点</p>
       <ul>
@@ -14,12 +15,27 @@
       </ul>
     </div>
     <div class="main-bug-list">
-      <p>既知のバグとぼやき</p>
-      <ul>
-        <li>編集中に真横のコピーボタンを触るとテキストが確定される(現状仕様) これ治すのめちゃ大変</li>
-        <li>イベントタブの並び替えはむずい</li>
-        <li>UI整理したいので、そのうち画面がガラッとかわります</li>
-      </ul>
+      
+      <div (click)="openBugBoyaki()" *ngIf="!bugBoyakiIsOpend">
+        <p>既知のバグとぼやき... (click open)</p>
+      </div>
+      <div (click)="closeBugBoyaki()" *ngIf="bugBoyakiIsOpend">
+        <p>既知のバグとぼやき (click close)</p>
+      </div>
+      <div *ngIf="bugBoyakiIsOpend">
+        <ul>
+          <li>[バグ] 編集中に真横のコピーボタンを触るとテキストが確定される(現状仕様) </li>
+          <ul>
+            <li>これ治すのめちゃ大変 </li>
+          </ul>
+          <li>[バグ] たまに入力欄が細長くなる。</li>
+          <ul>
+            <li>リロードすると治るかと思います。</li>
+          </ul>
+          <li>[ぼやき] イベントタブの並び替えはむずい</li>
+          <li>[ぼやき] UIは随時更新していくのでボタンの位置とかコロコロ変わります</li>
+        </ul>
+      </div>
     </div>
   </div>
 

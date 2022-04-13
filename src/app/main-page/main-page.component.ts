@@ -14,8 +14,10 @@ export class MainPageComponent implements OnInit {
   @ViewChild('fileInput') fileInputLink:any;
 
   public saveData:SaveData;
+  bugBoyakiIsOpend:boolean = false;
 
   constructor(private router:Router,private controllerService:ControllerService) {
+    this.bugBoyakiIsOpend = false;
   }
 
   ngOnInit(): void {
@@ -48,6 +50,12 @@ export class MainPageComponent implements OnInit {
 
   }
 
+  openBugBoyaki(){
+    this.bugBoyakiIsOpend = true;
+  }
+  closeBugBoyaki(){
+    this.bugBoyakiIsOpend = false;
+  }
 
   addEvent(){
     //console.log("add-events");

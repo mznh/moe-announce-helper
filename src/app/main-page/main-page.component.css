@@ -2,11 +2,47 @@
 .main-body {
 }
 .main-header {
+  background: #00A1DD;
+  margin: 0px;
+  padding: 7px;
+  height: 60px;
+}
+.main-header-title {
+  padding-top: 6px;
+}
+.main-header-title h1 {
+  font-weight: bolder;
+  font-size: 1.75em;
+  margin: 0px;
+  color: #FEFEFE;
+}
+.main-header-navigation {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #FEFEFE;
+}
+.main-header-navigation a,
+.main-header-navigation a:visited{
+  color: #FEFEFE;
+  text-decoration: none;
+}
+.main-header-navigation a:hover {
+  text-decoration: underline;
+}
+
+.main-header-description {
   margin: 10px 7px;
 }
 .main-update-list p,ul{
   margin: 0px;
   font-size: 12px;
+}
+
+.main-bug-button {
+  width: 190px;
+  padding-left: 5px;
+  border: 1px solid #CCCCCC;
+  border-radius: 10px;
 }
 
 .main-bug-list p,ul{
@@ -37,4 +73,28 @@
   margin: 20px;
   font-size: 32px;
   height: 50px;
+}
+
+
+
+
+/* footer */
+/* component わけたほうがいい*/
+.main-footer-body {
+  font-size: 10pt;
+}
+
+.main-footer-right, .main-footer-disclaimer{
+  padding: 7px;
+}
+.main-footer-right-title, .main-footer-disclaimer-title {
+  font-size: 18px;
+  padding: 0px;
+  margin: 0px;
+}
+.main-footer-right-body p,
+.main-footer-disclaimer-body p {
+  font-size: 14px;
+  padding: 0px;
+  margin: 2px;
 }

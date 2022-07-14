@@ -17,7 +17,10 @@ export class MessageComponent implements OnInit {
   @Input() inputMessageText:string;
   @Output() textChangeEvent = new EventEmitter<MessageData>();
 
+  isCopied:boolean;
+
   constructor(private clipboard: Clipboard){ 
+    this.isCopied = false;
   }
 
 
@@ -32,6 +35,7 @@ export class MessageComponent implements OnInit {
     const messageText = this.inputMessageText;
 
     this.clipboard.copy(messageText)
+    this.isCopied = true;
   }
 
   public copyToClipboardWithCmdStyle(){
@@ -40,7 +44,8 @@ export class MessageComponent implements OnInit {
     const moeCmd = this.inputMessageType;
     const copyText = "/" + moeCmd + " " + messageText.replace(/\r?\n/g,"");
 
-    this.clipboard.copy(copyText)
+    this.clipboard.copy(copyText);
+    this.isCopied = true;
   }
 
   public deleteMessage(){

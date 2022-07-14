@@ -30,10 +30,20 @@
     <ng-container *ngSwitchDefault>
       <div class="message-body-text">
         <textarea matInput class="message-text" #messageValue cdkTextareaAutosize (change)="textChange()" > </textarea>
-        <button mat-stroked-button color="primary" class="message-copy-button" 
-          tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー！</button>
-        <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
-          tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
+        <div class="message-copy-button-tile" *ngIf="isCopied; else isNotCopied">
+          <button mat-stroked-button color="primary" class="message-copy-button" 
+            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー済！</button>
+          <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
+            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー済！</button>
+        </div>
+        <ng-template #isNotCopied>
+          <div class="message-copy-button-tile" >
+            <button mat-stroked-button color="primary" class="message-copy-button" 
+              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー！</button>
+            <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
+              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
+          </div>
+        </ng-template>
       </div>
     </ng-container>
   </ng-container>

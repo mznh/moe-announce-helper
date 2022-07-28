@@ -35,6 +35,14 @@
   grid-template-columns: 100px 100px;
 }
 
+.is-copied {
+  color: gray;
+}
+
+.mat-copied {
+  color: gray;
+}
+
 .message-text{
   border: 1px solid #CCCCCC;
   border-radius: 3px;

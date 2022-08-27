@@ -19,11 +19,15 @@
   </div>
   <div class="event-main">
     <div cdkDropList class="event-message-list" (cdkDropListDropped)="drop($event)">
-      <div #messages cdkDrag class="evetn-message-panel" *ngFor="let messageData of inputEventData.messages">
+      <div #messages cdkDrag 
+                     [class.evetn-message-panel]="!isDarkMode()" 
+                     [class.evetn-message-panel-dark]="isDarkMode()" 
+        *ngFor="let messageData of inputEventData.messages">
         <div class="event-message-grip" cdkDragHandle>
           <mat-icon class="event-message-grip-icon">drag_handle</mat-icon>
         </div>
         <app-message 
+                    class="unicorn-dark-theme"
           [inputMessageId]="messageData.id"
           [inputMessageType]="messageData.msgType"
           [inputMessageText]="messageData.text"

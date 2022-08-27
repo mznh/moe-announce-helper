@@ -12,10 +12,15 @@
 .message-type-form {
   border: 1px solid #CCCCCC;
   border-radius: 3px;
+  color: white !important; 
 }
 
 .message-type-form ::ng-deep .mat-form-field-underline {
   display: none;
+}
+
+:host /deep/ .mat-select-value{
+  color: #808080 !important; 
 }
 
 .message-type-select {
@@ -23,7 +28,8 @@
   padding: 0px 3px;
   width: 90%;
 }
-
+.message-type-value {
+}
 /* text araa を内包するbody */
 .message-body-text {
   display: grid;
@@ -54,9 +60,11 @@
 
 .message-copy-button{
   margin: 0px 0px 0px 0px ;
+  border: 1px solid #CCCCCC;
 }
 .message-cmd-copy-button{
   margin: 0px 0px 0px 0px ;
+  border: 1px solid #CCCCCC;
 }
 .message-body-kugiri {
   display: grid;
@@ -74,4 +82,5 @@
 /* 全message type 共通の削除ボタン*/
 .message-delete-button{
   margin: 0px 0px 0px 0px ;
+  border: 1px solid #CCCCCC;
 }

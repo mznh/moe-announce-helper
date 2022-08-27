@@ -1,6 +1,19 @@
 
 .main-body {
+  height:100%;
 }
+.main-body-dark {
+  height:100%;
+  background: #222222;
+  color: #EEEEEE;
+}
+
+.link-text {
+}
+.link-text-dark {
+  color: #EEEEEE;
+}
+
 .main-header {
   background: #00A1DD;
   margin: 0px;
@@ -54,8 +67,20 @@
   margin: 0px 7px;
 }
 
+.main-controll-panel-dark {
+  margin: 0px 7px;
+}
+.dark-mode-toggle {
+  margin-left: 10px;
+}
+
 .main-events {
 }
+
+::ng-deep .mat-tab-label {
+  color: #808080;
+}
+
 .add-event-tab {
   margin-left: 0px !important;
 }
@@ -75,11 +100,29 @@
   height: 50px;
 }
 
+.isNormalMode {
+}
+.isDarkMode {
+  background: #222222;
+  color: #EEEEEE;
+}
 
+hr {
+  margin: 0px;
+}
 
 
 /* footer */
 /* component わけたほうがいい*/
+.main-footer {
+  height: 100%;
+
+}
+.main-footer-dark {
+  height: auto;
+  background: #222222;
+  color: #EEEEEE;
+}
 .main-footer-body {
   font-size: 10pt;
 }

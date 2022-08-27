@@ -1,4 +1,7 @@
-import { Output, EventEmitter, AfterViewInit,ViewChild, Component, OnInit, OnChanges, Input} from '@angular/core';
+import { Output, EventEmitter, 
+  AfterViewInit,ViewChild, 
+  Component, OnInit, OnChanges, 
+  Input, HostBinding} from '@angular/core';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FormBuilder } from '@angular/forms';
 import { Clipboard } from '@angular/cdk/clipboard';

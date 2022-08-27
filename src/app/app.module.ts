@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { MessageComponent } from './message/message.component';
@@ -46,6 +48,8 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     MatDividerModule,
     ClipboardModule,
     DragDropModule,
+    MatSlideToggleModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

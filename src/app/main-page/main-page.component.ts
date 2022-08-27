@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit,ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ControllerService } from '../controller-service/controller.service';
 import { EventComponent } from "../event/event.component";
@@ -15,6 +17,7 @@ export class MainPageComponent implements OnInit {
 
   public saveData:SaveData;
   bugBoyakiIsOpend:boolean = false;
+  darkModeInput:boolean = false;
 
   constructor(private router:Router,private controllerService:ControllerService) {
     this.bugBoyakiIsOpend = false;
@@ -22,10 +25,21 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateEvents();
+    //this.darkModeInput = this.controllerService.isDarkMode();
+    this.darkModeInput = this.controllerService.initDarkMode()
   }
   ngAfterViewInit() {
     // ページ開いたときに localstrage からロード
-    setTimeout(()=>{this.loadLocalData()},200);
+    setTimeout(()=>{
+      this.loadLocalData()
+    },200);
+  }
+
+  isDarkMode(){
+    return this.controllerService.isDarkMode();
+  }
+  changeDarkModeToggle(newValue:boolean){
+    this.controllerService.setDarkMode(newValue);
   }
 
   

@@ -22,7 +22,12 @@
 .evetn-message-panel {
   display: grid;
   grid-template-columns: 30px 800px;
-  background: #FFFFFF;
+  background: #FFFFFF; 
+}
+.evetn-message-panel-dark {
+  display: grid;
+  grid-template-columns: 30px 800px;
+  background: #222222; 
 }
 .event-message-grip{
   position: relative;

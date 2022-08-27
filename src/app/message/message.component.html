@@ -1,5 +1,6 @@
 
 <div class="message">
+
   <mat-form-field appearance="legacy" class="message-type-form" (click)="clickTypeSelectForm()" >
     <mat-select #typeValue class="message-type-select" tabindex="-1" 
       [(value)]="inputMessageType" (selectionChange)="typeChange($event.value)" >

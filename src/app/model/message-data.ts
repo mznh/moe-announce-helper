@@ -11,9 +11,13 @@ export interface EventData {
   messages: MessageData[];
 };
 
+export interface ConfigData{
+  isDarkMode:boolean;
+}
+
 export interface SaveData {
   events: EventData[];
-  config: string;
+  config: ConfigData;
 };
 
 export function generateMessage(id:number):MessageData{ 
@@ -46,4 +50,10 @@ export function getNewEventId(saveData:SaveData){
   }
   const maxId = saveData.events.map((evt:EventData)=>{return evt.id}).reduce((a:number,b:number)=>{return Math.max(a,b)});
   return maxId + 1;
+}
+
+export function generateDefaultConfig(){
+  return {
+    isDarkMode: false
+  }
 }

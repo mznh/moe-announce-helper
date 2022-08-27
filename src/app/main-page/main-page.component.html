@@ -1,6 +1,6 @@
 
 
-<div class="main-body">
+<div [class.main-body]="!isDarkMode()" [class.main-body-dark]="isDarkMode()" >
   <div class="main-header">
     <div class="main-header-title">
       <h1>賢者のメガホン Ver 0.0.3</h1>
@@ -9,80 +9,87 @@
       <a href="../../">mznh</a> / <a href="../">moe</a> / announce
     </div>
   </div>
-  <div class="main-header-description">
-    <h3>
-      レイドやイベントのアナウンスがしやすくなる便利アプリです。アナウンス原稿の管理とゲームチャットへのコピペが簡単に行えます。by <a  href="https://twitter.com/mznh_moe">@mznh_moe</a>
-    </h3>
-    <p>
-      機能開発や公開継続の判断に使うので「～のイベントで使ったよ！」ってマシュマロにて報告してくれると嬉しいです。
-      要望やバグ報告も大歓迎。<a href="https://marshmallow-qa.com/mznh_moe">マシュマロはこちら！</a></p>
-    <p> アナウンス内容はお使いのPC内に保存しているだけで、サービス提供側には一切送信されておりません。なので定期的に「SAVE AS FILE」にてバックアップを取ることをオススメします！ </p>
-    <div class="main-update-list">
-      <p>変更点</p>
-      <ul>
-        <li>コピーしたらコピーボタンを灰色に変化させる（灰色になってもコピー自体はできます）</li>
-      </ul>
-    </div>
-    <div class="main-bug-list">
-      <div class="main-bug-button" (click)="openBugBoyaki()" *ngIf="!bugBoyakiIsOpend">
-        <p>既知のバグとぼやき... (click open)</p>
-      </div>
-      <div class="main-bug-button" (click)="closeBugBoyaki()" *ngIf="bugBoyakiIsOpend">
-        <p>既知のバグとぼやき (click close)</p>
-      </div>
-      <div *ngIf="bugBoyakiIsOpend">
+  <div [class.isNormalMode]="!isDarkMode()" [class.isDarkMode]="isDarkMode()">
+    <div class="main-header-description">
+      <h3>
+        レイドやイベントのアナウンスがしやすくなる便利アプリです。アナウンス原稿の管理とゲームチャットへのコピペが簡単に行えます。by <a href="https://twitter.com/mznh_moe" [class.link-text]="!isDarkMode()" [class.link-text-dark]="isDarkMode()" >@mznh_moe</a>
+      </h3>
+      <p>
+        機能開発や公開継続の判断に使うので「～のイベントで使ったよ！」ってマシュマロにて報告してくれると嬉しいです。
+        要望やバグ報告も大歓迎。<a href="https://marshmallow-qa.com/mznh_moe" [class.link-text]="!isDarkMode()" [class.link-text-dark]="isDarkMode()">マシュマロはこちら！</a></p>
+      <p> アナウンス内容はお使いのPC内に保存しているだけで、サービス提供側には一切送信されておりません。なので定期的に「SAVE AS FILE」にてバックアップを取ることをオススメします！ </p>
+      <div class="main-update-list">
+        <p>変更点</p>
         <ul>
-          <li>[バグ] 編集中に真横のコピーボタンを触るとテキストが確定される(現状仕様) </li>
-          <ul>
-            <li>これ治すのめちゃ大変 </li>
-          </ul>
-          <li>[バグ] たまに入力欄が細長くなる。</li>
-          <ul>
-            <li>リロードすると治るかと思います。</li>
-          </ul>
-          <li>[ぼやき] イベントタブの並び替えはむずい</li>
-          <li>[ぼやき] UIは随時更新していくのでボタンの位置とかコロコロ変わります</li>
-          <li>[ぼやき] MoEの顔文字入力UIも大変。</li>
+          <li>コピーしたらコピーボタンを灰色に変化させる（灰色になってもコピー自体はできます）</li>
         </ul>
       </div>
+      <div class="main-bug-list">
+        <div class="main-bug-button" (click)="openBugBoyaki()" *ngIf="!bugBoyakiIsOpend">
+          <p>既知のバグとぼやき... (click open)</p>
+        </div>
+        <div class="main-bug-button" (click)="closeBugBoyaki()" *ngIf="bugBoyakiIsOpend">
+          <p>既知のバグとぼやき (click close)</p>
+        </div>
+        <div *ngIf="bugBoyakiIsOpend">
+          <ul>
+            <li>[バグ] 編集中に真横のコピーボタンを触るとテキストが確定される(現状仕様) </li>
+            <ul>
+              <li>これ治すのめちゃ大変 </li>
+            </ul>
+            <li>[バグ] たまに入力欄が細長くなる。</li>
+            <ul>
+              <li>リロードすると治るかと思います。</li>
+            </ul>
+            <li>[ぼやき] イベントタブの並び替えはむずい</li>
+            <li>[ぼやき] UIは随時更新していくのでボタンの位置とかコロコロ変わります</li>
+            <li>[ぼやき] MoEの顔文字入力UIも大変。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-controll-panel">
+      <button mat-stroked-button color="primary" (click)="saveDataToJson()">SAVE AS FILE</button>
+      <a #jsonDownload ></a>
+      <button mat-stroked-button color="primary" (click)="loadJsonFile()">LOAD FROM FILE</button>
+      <input type="file" style="display: none" #fileInput 
+        accept="*.json" (change)="onChangeFileInput()" />
+        <mat-slide-toggle
+          class="dark-mode-toggle"
+          [(ngModel)]="darkModeInput" 
+          (ngModelChange)="changeDarkModeToggle($event)">ダークモード</mat-slide-toggle>
+
+    </div>
+
+    <div class="main-events">
+      <mat-tab-group animationDuration="0ms" >
+        <mat-tab color="accent" label="{{event.name}}" *ngFor="let event of (saveData.events)">
+          <app-event
+            #eventElm
+            [inputEventData]="event"
+            (eventChangeEvent)="eventChange($event)"
+            >
+          </app-event>
+        </mat-tab>
+        <mat-tab disabled class="add-event-tab">
+          <ng-template mat-tab-label class="add-event-temp" (click)="addEvent()">
+            <button mat-button class="add-event-button"color="primary" (click)="addEvent()">ADD</button>
+          </ng-template>
+          <div class="joke">
+            <div class="joke-face">
+              ✌ (＾ω＾)   
+            </div>
+            <div class="joke-text">
+              これが映るのはホントはバグなんだけど、直さなくても問題なさそうなのでVサイン置いておきます。<br>
+              みなさま良きMoEライフを！
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
-
-  <div class="main-controll-panel">
-    <button mat-stroked-button color="primary" (click)="saveDataToJson()">SAVE AS FILE</button>
-    <a #jsonDownload ></a>
-    <button mat-stroked-button color="primary" (click)="loadJsonFile()">LOAD FROM FILE</button>
-    <input type="file" style="display: none" #fileInput 
-      accept="*.json" (change)="onChangeFileInput()" />
-  </div>
-
-  <div class="main-events">
-    <mat-tab-group animationDuration="0ms">
-      <mat-tab label="{{event.name}}" *ngFor="let event of (saveData.events)">
-        <app-event
-          #eventElm
-          [inputEventData]="event"
-          (eventChangeEvent)="eventChange($event)"
-          >
-        </app-event>
-      </mat-tab>
-      <mat-tab disabled class="add-event-tab">
-        <ng-template mat-tab-label class="add-event-temp" (click)="addEvent()">
-          <button mat-button class="add-event-button"color="primary" (click)="addEvent()">ADD</button>
-        </ng-template>
-        <div class="joke">
-          <div class="joke-face">
-            ✌ (＾ω＾)   
-          </div>
-          <div class="joke-text">
-            これが映るのはホントはバグなんだけど、直さなくても問題なさそうなのでVサイン置いておきます。<br>
-            みなさま良きMoEライフを！
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-  <div class="main-footer">
+  <div [class.main-footer]="!isDarkMode()" [class.main-footer-dark]="isDarkMode()">
     <hr>
     <div class="main-footer-body">
       <div class="main-footer-right">

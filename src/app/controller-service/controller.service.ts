@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
-  SaveData, EventData, MessageData,
+  SaveData, ConfigData, EventData, MessageData,
   generateMessage, generateEvent,
-  getNewMessageId, getNewEventId} from '../model/message-data'; 
+  getNewMessageId, getNewEventId,
+  generateDefaultConfig
+} from '../model/message-data'; 
 
 export const localStorageKey = "Save001";
 
@@ -26,11 +28,32 @@ export class ControllerService {
         ]
       }
     ],
-    config: "",
+    config: generateDefaultConfig(),
   };
 
   constructor(private snackBar:MatSnackBar) { }
 
+  public transformOldConfigData(oldableData:any){
+    // saveData.config がstringのものを全てConfigData型に変更
+    if( oldableData.config === "" ){
+      oldableData.config = generateDefaultConfig();
+    }
+    return oldableData;
+  }
+  //描画の関係でダークモードについてだけ個別で取得
+  public initDarkMode(){
+    this.loadEventFromLocalStrage();
+    return this.saveData.config.isDarkMode;
+  }
+
+  public isDarkMode(){
+    return this.saveData.config.isDarkMode;
+  }
+
+  public setDarkMode(value:boolean){
+    this.saveData.config.isDarkMode = value;
+    this.saveEvent(true);
+  }
 
   public fetchEvent(eventId:number){
     const event = this.saveData.events.find((evt)=>{return evt.id == eventId})
@@ -104,7 +127,8 @@ export class ControllerService {
     if(saveRowStringData === null){
       return;
     }
-    this.saveData = JSON.parse(saveRowStringData)
+
+    this.saveData = this.transformOldConfigData(JSON.parse(saveRowStringData))
     this.toastOpen("アナウンスデータをロードしました。")
   }
 
@@ -120,15 +144,14 @@ export class ControllerService {
             if(isEvent){
               const newEventIndex = getNewEventId(this.saveData)
               const newEventData = JSON.parse(reader.result)
-              console.log("hogehoge")
-              console.log(newEventData)
               newEventData.id = newEventIndex;
               this.saveData.events.push(newEventData)
               localStorage.setItem(localStorageKey,this.generateJsonString())
               this.toastOpen("イベントをファイルからロードしました。")
 
             }else{ //全部インポートの場合
-              this.saveData = JSON.parse(reader.result)
+              const loadRawData = JSON.parse(reader.result)
+              this.saveData = this.transformOldConfigData(loadRawData)
               localStorage.setItem(localStorageKey,this.generateJsonString())
               this.toastOpen("アナウンスデータをファイルからロードしました。")
             }

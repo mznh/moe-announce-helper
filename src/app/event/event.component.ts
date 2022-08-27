@@ -27,6 +27,10 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isDarkMode(){
+    return this.controllerService.isDarkMode();
+  }
+
   renameEvent(){
     const newName = this.nameInputElm.nativeElement.value;
     this.eventChangeEvent.emit({

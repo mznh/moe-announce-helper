@@ -115,8 +115,7 @@ hr {
 /* footer */
 /* component わけたほうがいい*/
 .main-footer {
-  height: 100%;
-
+  height: auto;
 }
 .main-footer-dark {
   height: auto;

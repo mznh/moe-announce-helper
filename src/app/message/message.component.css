@@ -19,7 +19,7 @@
   display: none;
 }
 
-:host /deep/ .mat-select-value{
+:host .mat-select-value{
   color: #808080 !important; 
 }
 

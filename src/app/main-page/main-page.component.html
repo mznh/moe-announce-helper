@@ -55,10 +55,10 @@
       <button mat-stroked-button color="primary" (click)="loadJsonFile()">LOAD FROM FILE</button>
       <input type="file" style="display: none" #fileInput 
         accept="*.json" (change)="onChangeFileInput()" />
-        <mat-slide-toggle
-          class="dark-mode-toggle"
-          [(ngModel)]="darkModeInput" 
-          (ngModelChange)="changeDarkModeToggle($event)">ダークモード</mat-slide-toggle>
+      <mat-slide-toggle
+        class="dark-mode-toggle"
+        [(ngModel)]="darkModeInput" 
+        (ngModelChange)="changeDarkModeToggle($event)">ダークモード</mat-slide-toggle>
 
     </div>
 

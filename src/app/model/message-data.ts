@@ -4,16 +4,20 @@ export interface MessageData{
   text: string;
 };
 
+export interface EventConfig{
+  isLocked: boolean;
+};
 export interface EventData {
   id: number;
   name: string;
   info: string;
+  config: EventConfig;
   messages: MessageData[];
 };
 
 export interface ConfigData{
   isDarkMode:boolean;
-}
+};
 
 export interface SaveData {
   events: EventData[];
@@ -32,6 +36,7 @@ export function generateEvent(id:number,name:string):EventData{
     id:id,
     name: name,
     info: "",
+    config: generateDefaultEventConfig(),
     messages: [],
   };
 };
@@ -55,5 +60,10 @@ export function getNewEventId(saveData:SaveData){
 export function generateDefaultConfig(){
   return {
     isDarkMode: false
+  }
+}
+export function generateDefaultEventConfig(): EventConfig{
+  return {
+    isLocked: false
   }
 }

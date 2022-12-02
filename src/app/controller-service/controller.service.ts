@@ -4,7 +4,8 @@ import {
   SaveData, ConfigData, EventData, MessageData,
   generateMessage, generateEvent,
   getNewMessageId, getNewEventId,
-  generateDefaultConfig
+  generateDefaultConfig,
+  generateDefaultEventConfig
 } from '../model/message-data'; 
 
 export const localStorageKey = "Save001";
@@ -20,6 +21,7 @@ export class ControllerService {
         id: 0,
         name: "サンプルイベント",
         info: "これはサンプルイベントの説明です",
+        config: generateDefaultEventConfig(),
         messages: [
           {
             id:0, msgType:"say",
@@ -33,11 +35,24 @@ export class ControllerService {
 
   constructor(private snackBar:MatSnackBar) { }
 
-  public transformOldConfigData(oldableData:any){
+  public transformOldSaveData(oldableData:any){
     // saveData.config がstringのものを全てConfigData型に変更
     if( oldableData.config === "" ){
       oldableData.config = generateDefaultConfig();
     }
+    oldableData.events = oldableData.events.map((event:any) => {
+      if('config' in event){
+        return event;
+      }else{
+        // event has not config
+        return {
+          ... event,
+          config:  generateDefaultEventConfig()
+        }
+      }
+    }
+    );
+    
     return oldableData;
   }
   //描画の関係でダークモードについてだけ個別で取得
@@ -82,6 +97,14 @@ export class ControllerService {
     }
   }
 
+  public setLockEvent(eventId:number,mode:boolean){
+    const event = this.fetchEvent(eventId)
+    if(event != undefined){
+      event.config.isLocked = mode;
+    }
+  }
+
+
   public addMessage(eventId:number, mesageId?:number, msgType?:string, text?:string){
     const eventData = this.fetchEvent(eventId);
     if(eventData === undefined){
@@ -115,6 +138,17 @@ export class ControllerService {
     }
   }
 
+  public changeEventLock(eventId:number, newLockStatus:boolean){
+    //参照をゲッチュ
+    const eventData = this.fetchEvent(eventId);
+    if(eventData === undefined){
+      throw 'Error: EventId is not found';
+      return ;
+    }
+    eventData.config.isLocked = newLockStatus;
+
+  }
+
   public saveEvent(quiet:boolean = false){
     localStorage.setItem(localStorageKey,this.generateJsonString())
     if(quiet === false){
@@ -128,7 +162,7 @@ export class ControllerService {
       return;
     }
 
-    this.saveData = this.transformOldConfigData(JSON.parse(saveRowStringData))
+    this.saveData = this.transformOldSaveData(JSON.parse(saveRowStringData))
     this.toastOpen("アナウンスデータをロードしました。")
   }
 
@@ -151,7 +185,7 @@ export class ControllerService {
 
             }else{ //全部インポートの場合
               const loadRawData = JSON.parse(reader.result)
-              this.saveData = this.transformOldConfigData(loadRawData)
+              this.saveData = this.transformOldSaveData(loadRawData)
               localStorage.setItem(localStorageKey,this.generateJsonString())
               this.toastOpen("アナウンスデータをファイルからロードしました。")
             }

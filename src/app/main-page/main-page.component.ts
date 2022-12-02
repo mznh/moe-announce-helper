@@ -57,6 +57,12 @@ export class MainPageComponent implements OnInit {
       this.controllerService.renameEvent(eventId,newMessageData.text)
     }else if(msgType === "delete" && newMessageData.id === -1){
       this.controllerService.deleteEvent(eventId)
+    }else if(msgType === "change_lock" && newMessageData.id === -1){
+      if(newMessageData.text === "true"){
+        this.controllerService.changeEventLock(eventId,true);
+      }else{
+        this.controllerService.changeEventLock(eventId,false);
+      }
     }else{
       this.controllerService.changeMessage(eventId,newMessageData);
     }

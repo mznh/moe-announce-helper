@@ -48,5 +48,12 @@
       </div>
     </ng-container>
   </ng-container>
-  <button mat-stroked-button color="accent" class="message-delete-button" tabindex="-1" (click)="deleteMessage()">削除</button>
+  <button mat-stroked-button 
+    color="accent" 
+    class="message-delete-button" 
+    tabindex="-1" 
+    [disabled]="isLocked"
+    (click)="deleteMessage()">
+      削除
+  </button>
 </div>

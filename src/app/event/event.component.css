@@ -5,7 +5,7 @@
 .event-info {
   margin: 7px 0px;
   display: grid;
-  grid-template-columns: 200px 80px 80px 50px;
+  grid-template-columns: 200px 80px 80px 50px 200px;
 }
 .event-export-button{
   margin: 7px 0px 0px 0px;
@@ -17,6 +17,9 @@
 }
 .event-delete-button {
   margin: 7px 0px 0px 0px;
+}
+.event-lock-toggle {
+  margin: 16px 0px 0px 10px;
 }
 
 .evetn-message-panel {
@@ -46,4 +49,5 @@
   width: 80%;
   height: 2.2rem;
 }
+
 

@@ -21,6 +21,8 @@ export class EventComponent implements OnInit {
   @Input() inputEventData:EventData;
   @Output() eventChangeEvent = new EventEmitter<{event:EventData,message:MessageData}>();
 
+  isLocked:boolean;
+
   constructor(private matDialog: MatDialog, private controllerService:ControllerService) {
   }
 
@@ -117,5 +119,14 @@ export class EventComponent implements OnInit {
       console.log(err);
     }
   }
+
+  changeEventLockMode(newValue:boolean){
+    this.isLocked = newValue;
+    this.eventChangeEvent.emit({
+      event: this.inputEventData,
+      message: { id:-1, msgType:"change_lock",text:newValue.toString() }
+    });
+  }
+
 
 }

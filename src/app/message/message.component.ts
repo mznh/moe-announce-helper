@@ -18,12 +18,15 @@ export class MessageComponent implements OnInit {
   @Input() inputMessageId:number;
   @Input() inputMessageType:string;
   @Input() inputMessageText:string;
+  @Input() inputMessageIsLocked:boolean;
   @Output() textChangeEvent = new EventEmitter<MessageData>();
 
   isCopied:boolean;
+  isLocked:boolean;
 
   constructor(private clipboard: Clipboard){ 
     this.isCopied = false;
+    this.isLocked = this.inputMessageIsLocked;
   }
 
 
@@ -31,6 +34,10 @@ export class MessageComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.messageValue.nativeElement.value = this.inputMessageText;
+  }
+
+  ngOnChanges(){
+    this.isLocked = this.inputMessageIsLocked
   }
 
   public copyToClipboard(){

@@ -5,7 +5,8 @@ import {
   generateMessage, generateEvent,
   getNewMessageId, getNewEventId,
   generateDefaultConfig,
-  generateDefaultEventConfig
+  generateDefaultEventConfig,
+  generateDefaultSaveData
 } from '../model/message-data'; 
 
 export const localStorageKey = "Save001";
@@ -15,24 +16,7 @@ export const localStorageKey = "Save001";
 })
 export class ControllerService {
   //一切セーブデータがないときのダミーデータ
-  public saveData:SaveData = {
-    events: [
-      {
-        id: 0,
-        name: "サンプルイベント",
-        info: "これはサンプルイベントの説明です",
-        config: generateDefaultEventConfig(),
-        messages: [
-          {
-            id:0, msgType:"say",
-            text:"セーブされたデータを読み込んでいます... データがなかったらこのままです。"
-          },
-        ]
-      }
-    ],
-    config: generateDefaultConfig(),
-  };
-
+  public saveData:SaveData = generateDefaultSaveData();
   constructor(private snackBar:MatSnackBar) { }
 
   public transformOldSaveData(oldableData:any){
@@ -74,11 +58,17 @@ export class ControllerService {
     const event = this.saveData.events.find((evt)=>{return evt.id == eventId})
     if(event === undefined){
       throw 'Error: EventId is not found';
-      return ;
     }
     return event;
   }
 
+  public fetchEventIndex(eventId:number){
+    const eventIndex = this.saveData.events.findIndex((evt)=>{return evt.id == eventId});
+    if(eventIndex === -1){
+      throw 'Error: EventId is not found';
+    }
+    return eventIndex;
+  }
   public addEvent(){
     const newEventIndex = getNewEventId(this.saveData);
     this.saveData.events.push( generateEvent(newEventIndex,"新しいイベント") )
@@ -91,7 +81,7 @@ export class ControllerService {
     }
   }
   public deleteEvent(eventId:number){
-    const eventIndex = this.saveData.events.findIndex((evt)=>{return evt.id == eventId});
+    const eventIndex = this.fetchEventIndex(eventId);
     if(eventIndex != -1){
       this.saveData.events.splice(eventIndex,1)
     }
@@ -124,7 +114,7 @@ export class ControllerService {
 
   public changeMessage(eventId:number, newMessageData:MessageData){
     //参照をゲッチュ
-    const oldEvent = this.saveData.events.find((evt)=>{return evt.id == eventId})
+    const oldEvent = this.fetchEvent(eventId)
     if(oldEvent === undefined){
       throw 'Error: EventId is not found';
       return ;

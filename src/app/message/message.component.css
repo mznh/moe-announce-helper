@@ -20,15 +20,20 @@
 }
 
 :host .mat-select-value{
-  color: #808080 !important; 
+  /*color: #808080 !important; */
+  color: #3F51B5 !important; 
 }
 
 .message-type-select {
   text-align: center;
   padding: 0px 3px;
   width: 90%;
+  color: #3F51B5 !important; 
 }
 .message-type-value {
+}
+.mat-select-value {
+  color: #3F51B5 !important; 
 }
 /* text araa を内包するbody */
 .message-body-text {

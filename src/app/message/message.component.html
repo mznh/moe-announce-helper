@@ -11,15 +11,6 @@
     </mat-select>
   </mat-form-field>
   <ng-container [ngSwitch]="inputMessageType">
-    <ng-container *ngSwitchCase="'hoge'">
-      <div class="message-body-text">
-        <textarea matInput class="message-text" #messageValue (change)="textChange()" > </textarea>
-        <button mat-stroked-button color="primary" class="message-copy-button" 
-          tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー！</button>
-        <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
-          tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
-      </div>
-    </ng-container>
     <ng-container *ngSwitchCase="'kgr'">
       <div class="message-body-kugiri">
         <!-- div #messageValue style="display: none" > </div -->
@@ -33,16 +24,16 @@
         <textarea matInput class="message-text" #messageValue cdkTextareaAutosize (change)="textChange()" > </textarea>
         <div class="message-copy-button-tile" *ngIf="isCopied; else isNotCopied">
           <button mat-stroked-button color="copied" class="message-copy-button" 
-            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー済！</button>
+            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー済</button>
           <button mat-stroked-button color="copied" class="message-cmd-copy-button" 
-            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー済！</button>
+            tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー済</button>
         </div>
         <ng-template #isNotCopied>
           <div class="message-copy-button-tile is-not-copied" >
             <button mat-stroked-button color="primary" class="message-copy-button" 
-              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー！</button>
+              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー</button>
             <button mat-stroked-button color="primary" class="message-cmd-copy-button" 
-              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー！</button>
+              tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboardWithCmdStyle()">コマンド<br>コピー</button>
           </div>
         </ng-template>
       </div>

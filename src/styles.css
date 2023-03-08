@@ -10,4 +10,6 @@ body {
 	font-color: #212529;
 }
 
-
+.mat-select-value{
+  color: #3F51B5 !important; 
+}

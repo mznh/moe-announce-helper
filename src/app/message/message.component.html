@@ -21,7 +21,9 @@
     </ng-container>
     <ng-container *ngSwitchDefault>
       <div class="message-body-text">
-        <textarea matInput class="message-text" #messageValue cdkTextareaAutosize (change)="textChange()" > </textarea>
+        <textarea matInput
+                  [ngClass]="isOverLength?'message-text-over':'message-text'"
+          #messageValue cdkTextareaAutosize (change)="textChange()" > </textarea>
         <div class="message-copy-button-tile" *ngIf="isCopied; else isNotCopied">
           <button mat-stroked-button color="copied" class="message-copy-button" 
             tabindex="-1" (mouseover)="onMouse()" (click)="copyToClipboard()">コピー済</button>

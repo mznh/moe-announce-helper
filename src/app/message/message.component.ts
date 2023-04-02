@@ -23,9 +23,11 @@ export class MessageComponent implements OnInit {
 
   isCopied:boolean;
   isLocked:boolean;
+  isOverLength:boolean;
 
   constructor(private clipboard: Clipboard){ 
     this.isCopied = false;
+    this.isOverLength = false;
     this.isLocked = this.inputMessageIsLocked;
   }
 
@@ -34,6 +36,12 @@ export class MessageComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.messageValue.nativeElement.value = this.inputMessageText;
+    const count_string = this.inputMessageText.replace(/[^ -~]/g,'aa')
+    if(count_string.length > 172){
+        this.isOverLength = true;
+    }else{
+        this.isOverLength = false;
+    }
   }
 
   ngOnChanges(){

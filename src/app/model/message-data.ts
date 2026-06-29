@@ -17,6 +17,7 @@ export interface EventData {
 
 export interface ConfigData{
   isDarkMode:boolean;
+  cloudSaveUrl:string | undefined;
 };
 
 export interface SaveData {
@@ -67,7 +68,8 @@ export function getNewEventId(saveData:SaveData){
 
 export function generateDefaultConfig(){
   return {
-    isDarkMode: false
+    isDarkMode: false,
+    cloudSaveUrl: undefined
   }
 }
 export function generateDefaultEventConfig(): EventConfig{
